@@ -1,0 +1,15 @@
+// Generated from "cmake-cpp-struct" - DO NOT MODIFY
+#ifndef EXPORT_HPP
+#define EXPORT_HPP
+
+#ifdef _MSC_VER
+#ifdef @library_name_uppercase@_EXPORT
+#define @library_name_uppercase@_API __declspec(dllexport)
+#else
+#define @library_name_uppercase@_API __declspec(dllimport)
+#endif
+#else
+#define @library_name_uppercase@_API
+#endif
+
+#endif // EXPORT_HPP
