@@ -1,0 +1,43 @@
+## How to use
+
+Import CPP-STRUCT
+
+```cmake
+include(cmake-cpp-struct/main.cmake)
+```
+
+## Declare Application
+
+```cmake
+cppstruct_app(
+	MyApp
+)
+cppstruct_app_headers(
+	MyApp
+	defines.hpp
+)
+cppstruct_app_sources(
+	MyApp
+	main.cpp
+)
+```
+
+## Declare Static Library
+
+```cmake
+cppstruct_lib(
+	MyLib1
+)
+cppstruct_lib_headers(
+	MyLib1
+	lib1_private.hpp
+)
+cppstruct_lib_public_headers(
+	MyLib1
+	lib1.hpp
+)
+cppstruct_lib_sources(
+	MyLib1
+	lib1.cpp
+)
+```
