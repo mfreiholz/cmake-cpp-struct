@@ -17,13 +17,14 @@ macro(cppstruct_qt)
 	set(CMAKE_AUTOMOC ON)
 	set(CMAKE_AUTOUIC ON)
 	set(CMAKE_AUTORCC ON)
+	find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core)
 endmacro()
 
 # Finds Qt libraries with `find_package()`.
 # ARG parameters are the required Qt libraries, e.g. "Core Gui Widgets"
 function(cppstruct_qt_packages)
 	foreach(arg IN LISTS ARGN)
-		find_package(Qt5${arg} REQUIRED)
+		find_package(Qt${QT_VERSION_MAJOR}${arg} REQUIRED)
 	endforeach()
 endfunction()
 
@@ -58,24 +59,24 @@ endfunction()
 # ARG parameters are the required Qt libraries, e.g. "Core Gui Widgets"
 function(cppstruct_qt_link app_name)
 	foreach(arg IN LISTS ARGN)
-		target_link_libraries(${app_name} PRIVATE Qt5::${arg})
+		target_link_libraries(${app_name} PRIVATE Qt${QT_VERSION_MAJOR}::${arg})
 	endforeach()
 
 	# WARNING!
 	# We always link a few libs for convinience.
 	# TODO: Only do this, if required by libs.
-	if(TRUE)
-		if(WIN32)
-			target_link_libraries(
-				${app_name}
-				PRIVATE OpenGL32.lib
-			)
-		endif(WIN32)
-		if(UNIX)
-			target_link_libraries(
-				${app_name}
-				PRIVATE GL
-			)
-		endif(UNIX)
-	endif(TRUE)
+	# if(TRUE)
+	# 	if(WIN32)
+	# 		target_link_libraries(
+	# 			${app_name}
+	# 			PRIVATE OpenGL32.lib
+	# 		)
+	# 	endif(WIN32)
+	# 	if(UNIX)
+	# 		target_link_libraries(
+	# 			${app_name}
+	# 			PRIVATE GL
+	# 		)
+	# 	endif(UNIX)
+	# endif(TRUE)
 endfunction()
